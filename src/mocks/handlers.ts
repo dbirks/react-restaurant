@@ -1,5 +1,5 @@
 import { rest } from "msw";
-import { mockFoods } from "./mockFoods";
+import { mockIceCreamShop } from "./mockFoods";
 
 export const handlers = [
     rest.post("/login", (req, res, ctx) => {
@@ -13,6 +13,6 @@ export const handlers = [
     }),
 
     rest.get("http://localhost:3001/foods", (req, res, ctx) => {
-        return res(ctx.status(200), ctx.json(mockFoods));
+        return res(ctx.status(200), ctx.json(mockIceCreamShop));
     }),
 ];
