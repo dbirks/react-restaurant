@@ -23,18 +23,10 @@ export const mockDiner: Food[] = [
 export const mockIceCreamShop: Food[] = [
     {
         id: 1,
-        name: "Ice Cream Cone",
+        name: "Vanilla Ice Cream Cone",
         image: "cone.jpg",
         price: 4.99,
-        description: "Tasty",
+        description: "Tasty.",
         tags: ["Dessert"],
-    },
-    {
-        id: 2,
-        name: "Banana Blueberry French Toast",
-        image: "banana-french-toast.jpg",
-        price: 9.99,
-        description: "Delicious french toast with banana and blueberry.",
-        tags: ["Breakfast"],
     },
 ];
