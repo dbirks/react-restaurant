@@ -6,14 +6,19 @@ import { Toaster } from "react-hot-toast";
 import "./index.css";
 import { ErrorBoundary } from "react-error-boundary";
 
+if (process.env.NODE_ENV === "development") {
+    const { worker } = require("./mocks/browser");
+    worker.start();
+}
+
 // Warning: StrictMode will render twice in dev only. This can catch subtle bugs.
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <ErrorBoundary fallback={<h1>Oops! Sorry, an error occurred.</h1>}>
-      <BrowserRouter>
-        <Toaster />
-        <App />
-      </BrowserRouter>
-    </ErrorBoundary>
-  </React.StrictMode>
+    <React.StrictMode>
+        <ErrorBoundary fallback={<h1>Oops! Sorry, an error occurred.</h1>}>
+            <BrowserRouter>
+                <Toaster />
+                <App />
+            </BrowserRouter>
+        </ErrorBoundary>
+    </React.StrictMode>
 );
