@@ -6,7 +6,12 @@ import { Toaster } from "react-hot-toast";
 import "./index.css";
 import { ErrorBoundary } from "react-error-boundary";
 
-if (import.meta.env.VITE_ENABLE_MSW === "Y") {
+// lazy load to keep out of the prod bundle
+const DevTools = React.lazy(() => import("./mocks/DevTools"));
+
+const useDevTools = import.meta.env.VITE_ENABLE_DEVTOOLS === "Y"
+
+if (useDevTools) {
     const { worker } = await import("./mocks/browser");
     worker.start();
 }
@@ -17,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <ErrorBoundary fallback={<h1>Oops! Sorry, an error occurred.</h1>}>
             <BrowserRouter>
                 <Toaster />
+                {useDevTools && <DevTools />}
                 <App />
             </BrowserRouter>
         </ErrorBoundary>
