@@ -1,18 +1,18 @@
 import { rest } from "msw";
-import { mockIceCreamShop } from "./mockFoods";
+import * as mockFoods from "./mockFoods";
+import { WorkerConfig } from "./useWorker";
 
-export const handlers = [
-    rest.post("/login", (req, res, ctx) => {
-        // Persist user's authentication in the session
-        sessionStorage.setItem("is-authenticated", "true");
-
-        return res(
-            // Respond with a 200 status code
-            ctx.status(200)
-        );
-    }),
-
-    rest.get("http://localhost:3001/foods", (req, res, ctx) => {
-        return res(ctx.status(200), ctx.json(mockIceCreamShop));
-    }),
-];
+export function getHandlers(config: WorkerConfig) {
+    return [
+        rest.get("http://localhost:3001/foods", (req, res, ctx) => {
+            return res(
+                ctx.status(200),
+                ctx.json(
+                    config.foodResponse === "Diner"
+                        ? mockFoods.mockDiner
+                        : mockFoods.mockIceCreamShop
+                )
+            );
+        }),
+    ];
+}

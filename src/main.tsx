@@ -11,11 +11,6 @@ const DevTools = React.lazy(() => import("./mocks/DevTools"));
 
 const useDevTools = import.meta.env.VITE_ENABLE_DEVTOOLS === "Y";
 
-if (useDevTools) {
-    const { worker } = await import("./mocks/browser");
-    worker.start();
-}
-
 // Warning: StrictMode will render twice in dev only. This can catch subtle bugs.
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <React.StrictMode>
