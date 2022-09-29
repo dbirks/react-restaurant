@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "run-p dev:msw start-api",
-    "start-with-real-api": "run-p dev start-api",
+    "start:real-api": "run-p dev start-api",
     "dev": "vite",
     "dev:msw": "cross-env VITE_ENABLE_MSW=Y vite",
     "build": "tsc && vite build",
