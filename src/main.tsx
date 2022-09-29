@@ -9,7 +9,7 @@ import { ErrorBoundary } from "react-error-boundary";
 // lazy load to keep out of the prod bundle
 const DevTools = React.lazy(() => import("./mocks/DevTools"));
 
-const useDevTools = import.meta.env.VITE_ENABLE_DEVTOOLS === "Y"
+const useDevTools = import.meta.env.VITE_ENABLE_DEVTOOLS === "Y";
 
 if (useDevTools) {
     const { worker } = await import("./mocks/browser");
@@ -22,8 +22,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <ErrorBoundary fallback={<h1>Oops! Sorry, an error occurred.</h1>}>
             <BrowserRouter>
                 <Toaster />
-                {useDevTools && <DevTools />}
-                <App />
+                {useDevTools ? <DevTools /> : <App />}
             </BrowserRouter>
         </ErrorBoundary>
     </React.StrictMode>
