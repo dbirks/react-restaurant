@@ -29,6 +29,7 @@ export default function Menu() {
                         </div>
                     );
                 })}
+                { foodQuery.isFetching && <p>Fetching new food...</p> }
             </div>
         </>
     );
